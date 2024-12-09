@@ -1,13 +1,21 @@
 body {
-    background-color: yellow;
+    background-color: #FFFFFF !important;
     font-family: arial !important;
     font-weight: bold !important;
     color: black !important;
 }
 
-.containerCentrato {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.form-custom {
+    background-color: #D7D7D7 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 5px !important;
+    padding: 50px !important;
+}
+
+.drop-area {
+    background-color: #FFFFFF;
+    border: 2px dashed #000000;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
