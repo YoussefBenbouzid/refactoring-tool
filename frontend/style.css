@@ -1,0 +1,13 @@
+body {
+    background-color: yellow;
+    font-family: arial !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.containerCentrato {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
