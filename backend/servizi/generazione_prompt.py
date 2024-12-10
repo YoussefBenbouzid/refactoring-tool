@@ -8,11 +8,11 @@ with open("definizioni/lista_code_smell.json", "r") as f:
 with open("definizioni/definizioni_refactoring.json", "r") as f:
     definizioni_refactoring = json.load(f)
 
-# Funzione che genera un prompt dinamicamente con i valori nei file JSON relativi alle varie definizioni
+# Funzione che genera un prompt dinamicamente con i valori prelevati dai file JSON
 def genera_prompt(codice):
     prompt = f"Ciao, ho bisogno che tu analizzi il seguente codice:\n"
     prompt += f"{codice}\n"
-    prompt += f"Fai riferimento alla seguente list di code smell e alle relative definizioni:\n"
+    prompt += f"Fai riferimento alla seguente lista di code smell e alle relative definizioni:\n"
     for code_smell, data in lista_code_smell.items():
         definizione = data.get("definizione")
         prompt += f"- {code_smell}: {definizione}\n"
@@ -22,7 +22,7 @@ def genera_prompt(codice):
         refactoring_suggeriti = data.get("refactoring_suggeriti")
         prompt += f"- {code_smell}: {', '.join(refactoring_suggeriti)}\n"
 
-    prompt += f"Per ogni refactoring scelto ritorna anche la rispettiva definizione:\n"
+    prompt += f"Per ogni refactoring scelto ritorna esattamente la rispettiva definizione presa dalla seguente lista:\n"
     for refactoring, definizione in definizioni_refactoring.items():
         prompt += f"- {refactoring}: {definizione}\n"
     
