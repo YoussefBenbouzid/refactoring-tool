@@ -1,8 +1,8 @@
 body {
     background-color: #FFFFFF !important;
+    color: #000000 !important;
     font-family: arial !important;
     font-weight: bold !important;
-    color: black !important;
 }
 
 .form-custom {
@@ -18,4 +18,13 @@ body {
     border-radius: 5px;
     padding: 20px;
     text-align: center;
+}
+
+.screen {
+    background-color: #000000 !important;
+    color: #66FF00 !important;
+}
+
+::placeholder {
+    color: #66FF00 !important;
 }

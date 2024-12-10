@@ -47,7 +47,7 @@ function cancellaFile() {
 
 // Funzione per inviare lo snippet inserito nella textarea
 function inviaSnippet() {
-    var testo = document.getElementById('snippet').value;
+    var codice = document.getElementById('snippet').value;
 }
 
 // Funzione per cancellare lo snippet nella textarea
@@ -55,12 +55,12 @@ function cancellaSnippet() {
     document.getElementById('snippet').value = ''; 
 }
 
-// Funzione reset
+// Funzione reset per cancellare file, snippet e output
 function reset() {
     var domanda = confirm("Confermi di voler eliminare tutti i dati?");
         if (domanda === true) {
             cancellaFile();
             cancellaSnippet();
-            // Implementare cancellazione output
+            document.getElementById('output').value = ''
         }
 }

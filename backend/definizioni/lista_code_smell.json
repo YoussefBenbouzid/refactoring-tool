@@ -1,0 +1,42 @@
+{
+    "Comments": {
+        "definizione": "Segnala questo code smell quando vi sono troppi commenti.",
+        "refactoring_suggeriti": ["Extract Method", "Extract Variable", "Introduce Assertion", "Rename Method"]
+    },
+    "Data Class": {
+        "definizione": "Segnala questo code smell quando una classe funge solo da contenitore per dati.",
+        "refactoring_suggeriti": ["Extract Class", "Move Method"]
+    },
+    "Duplicated Code": {
+        "definizione": "Segnala questo code smell quando lo stesso codice appare più di una volta.",
+        "refactoring_suggeriti": ["Extract Method"]
+    },
+    "Feature Envy": {
+        "definizione": "Segnala questo code smell quando un metodo accede ai dati di un altro oggetto più che ai propri.",
+        "refactoring_suggeriti": ["Extract Method", "Move Method"]
+    },
+    "Long Method": {
+        "definizione": "Segnala questo code smell quando un metodo ha più di dieci linee di codice.",
+        "refactoring_suggeriti": ["Decompose Conditional", "Extract Method", "Extract Method", "Introduce Parameter Object", "Preserve Whole Object", "Replace Method with Method Object", "Replace Temp with Query"]
+    },
+    "Long Parameter List": {
+        "definizione": "Segnala questo code smell quando un metodo ha troppi parametri.",
+        "refactoring_suggeriti": ["Introduce Parameter Object", "Preserve Whole Object", "Replace Parameter with Method Call"]
+    },
+    "Large Class": {
+        "definizione": "Segnala questo code smell quando una classe ha troppi metodi.",
+        "refactoring_suggeriti": ["Extract Class", "Extract Subclass", "Move Method"]
+    },
+    "Refused Bequest": {
+        "definizione": "Segnala questo code smell quando una sottoclasse non usa tutti i metodi e le proprietà ereditate.",
+        "refactoring_suggeriti": ["Extract Superclass", "Replace Inheritance with Delegation"]
+    },
+    "Shotgun Surgery": {
+        "definizione": "Segnala questo code smell quando per modificare il codice vanno apportate modifiche minime a molte classi diverse.",
+        "refactoring_suggeriti": ["Inline Class", "Move Field", "Move Method"]
+    },
+    "Switch Statement": {
+        "definizione": "Segnala questo code smell quando uno switch è molto lungo o ha troppi if-else.",
+        "refactoring_suggeriti": ["Extract Method", "Move Method", "Replace Conditional with Polymorphism"]
+    }
+}

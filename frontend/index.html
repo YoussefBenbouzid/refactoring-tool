@@ -24,7 +24,7 @@
                 <!-- Per inserire uno o più snippet di codice -->
                 <div class="form-group"  style="text-align: center;">
                     <label for="snippet">Inserisci qui i tuoi snippet di codice:</label>
-                    <textarea class="form-control" id="snippet" rows="5"></textarea>
+                    <textarea class="form-control screen" id="snippet" rows="5" placeholder=">_"></textarea>
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary" onclick="inviaSnippet()">Invia</button>
@@ -33,7 +33,7 @@
                 <!-- Area visualizzazione output -->
                 <div class="form-group" style="text-align: center;">
                     <label for="output">Suggerimenti:</label>
-                    <textarea class="form-control" id="output" rows="5" readonly></textarea>
+                    <textarea class="form-control screen" id="output" rows="5" placeholder="> Refactoring suggeriti: " readonly></textarea>
                 </div>
                 <div style="text-align: center;">
                     <button type="button" class="btn btn-danger" onclick="reset()">Reset</button>

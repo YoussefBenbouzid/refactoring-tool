@@ -1,0 +1,19 @@
+{
+    "Decompose Conditional": "Semplifica le strutture condizionali complesse spezzandole in metodi più piccoli e leggibili.",
+    "Extract Class": "Crea una nuova classe per separare responsabilità o ridurre la complessità.",
+    "Extract Method": "Rende il codice più leggibile e riutilizzabile estraendo un blocco di codice in un nuovo metodo.",
+    "Extract Superclass": "Estrae una classe genitore comune per eliminare codice duplicato e migliorare la gerarchia.",
+    "Extract Variable": "Semplifica espressioni complesse salvando i risultati in variabili con nomi significativi.",
+    "Extract Subclass": "Crea una sottoclasse per gestire comportamenti specifici, migliorando l'organizzazione del codice.",
+    "Introduce Assertion": "Aggiunge dichiarazioni per verificare condizioni che devono essere sempre vere, migliorando la robustezza del codice.",
+    "Introduce Parameter Object": "Raggruppa parametri correlati in un oggetto, semplificando la firma del metodo.",
+    "Move Field": "Sposta un campo nella classe più pertinente per migliorare la coesione.",
+    "Move Method": "Sposta un metodo nella classe più appropriata per ridurre la dipendenza tra classi.",
+    "Preserve Whole Object": "Passa un oggetto intero come parametro anziché singoli dati, migliorando la leggibilità.",
+    "Replace Conditional with Polymorphism": "Sostituisce le strutture condizionali con polimorfismo, migliorando la flessibilità e l'estensibilità.",
+    "Replace Inheritance with Delegation": "Sostituisce l'uso dell'ereditarietà con delegazione per migliorare la modularità e ridurre il legame tra classi.",
+    "Replace Method with Method Object": "Converte un metodo complesso in un oggetto dedicato, rendendo più semplice gestire la logica.",
+    "Replace Parameter with Method Call": "Sostituisce parametri con chiamate a metodi per ridurre il numero di parametri richiesti.",
+    "Rename Method": "Rinomina un metodo per rendere il suo scopo più chiaro e comprensibile.",
+    "Replace Temp with Query": "Sostituisce le variabili temporanee con chiamate a metodi, migliorando la chiarezza e riducendo la complessità."
+}
