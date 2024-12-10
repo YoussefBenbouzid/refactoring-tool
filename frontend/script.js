@@ -48,11 +48,23 @@ function cancellaFile() {
 // Funzione per inviare lo snippet inserito nella textarea
 function inviaSnippet() {
     var codice = document.getElementById('snippet').value;
+
+    fetch('http://127.0.0.1:8000/genera', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "codice": codice })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('output').value = data.output;
+    });
 }
 
 // Funzione per cancellare lo snippet nella textarea
 function cancellaSnippet() {
-    document.getElementById('snippet').value = ''; 
+    document.getElementById('snippet').value = '';
 }
 
 // Funzione reset per cancellare file, snippet e output
