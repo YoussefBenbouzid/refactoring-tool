@@ -1,8 +1,6 @@
 import openai
 
-openai.api_key = "MIA_API_KEY" # Configurazione OpenAI API Key
-
-prompt = gnp.genera_prompt(codice)
+openai.api_key = "API_KEY" # Configurazione OpenAI API Key
 
 def comunicazione_gpt(prompt):
     response = openai.Completion.create(
