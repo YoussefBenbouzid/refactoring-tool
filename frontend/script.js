@@ -49,7 +49,7 @@ function cancellaFile() {
 function inviaSnippet() {
     var codice = document.getElementById('snippet').value;
 
-    fetch('http://127.0.0.1:8000/genera', {
+    fetch('http://127.0.0.1:8000/genera_risposta', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -58,13 +58,31 @@ function inviaSnippet() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('output').value = data.output;
+        document.getElementById('risposta').value = data.risposta;
     });
 }
 
-// Funzione per cancellare lo snippet nella textarea
+// Funzione per cancellare lo snippet inserito nella textarea
 function cancellaSnippet() {
     document.getElementById('snippet').value = '';
+}
+
+// Funzione per inviare url repository inserito nella textarea
+function inviaUrl() {
+    var url = document.getElementById('url').value = '';
+
+    fetch('http://127.0.0.1:8000/manda_url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "url": url })
+    })
+}
+
+// Funzione per cancellare url repository inserito nella textarea
+function cancellaUrl() {
+    document.getElementById('url').value = '';
 }
 
 // Funzione reset per cancellare file, snippet e output
@@ -73,6 +91,7 @@ function reset() {
         if (domanda === true) {
             cancellaFile();
             cancellaSnippet();
+            cancellaUrl();
             document.getElementById('output').value = ''
         }
 }
