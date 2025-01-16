@@ -9,7 +9,7 @@ with open("definizioni/definizioni_refactoring.json", "r", encoding='utf-8') as 
     definizioni_refactoring = json.load(file)
 
 # Funzione che genera un prompt dinamicamente con i valori prelevati dai file JSON
-def generazione_prompt(codice):
+def generazione_prompt_snippet(codice):
     prompt = f"Ciao, ho bisogno che tu analizzi il seguente codice:\n\n"
     prompt += f"{codice}\n\n"
     prompt += f"Fai riferimento alla seguente lista di code smell e alle relative definizioni:\n"

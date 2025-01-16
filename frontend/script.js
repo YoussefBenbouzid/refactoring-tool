@@ -1,4 +1,4 @@
-// Selezione drop-area e files
+// Selezione drop-area e file
 const dropArea = document.getElementById('drop-area');
 const fileInput = document.getElementById('files');
 
@@ -15,10 +15,10 @@ dropArea.addEventListener('dragleave', () => {
 
 // Quando i file vengono rilasciati nell'area di drop (drop)
 dropArea.addEventListener('drop', (event) => {
-    event.preventDefault(); // Prevenzione comportamento di default
+    event.preventDefault(); // Prevenzione del comportamento di default
     dropArea.style.backgroundColor = ''; // Ripristino colore
 
-    const files = event.dataTransfer.files; // Ottenimento file rilasciati
+    const files = event.dataTransfer.files; // Ottenimento dei file rilasciati
     if (files.length > 0) {
         fileInput.files = files; // Aggiunta file all'input
     }
@@ -35,17 +35,20 @@ function inviaFile() {
     if (files.length > 0) {
         console.log('File inviati:', files); // Per testare, da cancellare poi
         // Implementare logica per inviare file a server
+        // Implementare logica per inviare file a server
+        // Implementare logica per inviare file a server
+        // Implementare logica per inviare file a server
     } else {
         alert('Seleziona almeno un file.');
     }
 }
 
-// Funzione per cancellare i file selezionati
+// Funzione per cancellare file selezionati
 function cancellaFile() {
     fileInput.value = '';
 }
 
-// Funzione per inviare lo snippet inserito nella textarea
+// Funzione per inviare snippet inseriti nella textarea
 function inviaSnippet() {
     var codice = document.getElementById('snippet').value;
 
@@ -62,25 +65,60 @@ function inviaSnippet() {
     });
 }
 
-// Funzione per cancellare lo snippet inserito nella textarea
+// Funzione per cancellare snippet inseriti nella textarea
 function cancellaSnippet() {
     document.getElementById('snippet').value = '';
 }
 
-// Funzione per inviare url repository inserito nella textarea
-function inviaUrl() {
-    var url = document.getElementById('url').value = '';
+// Funzione per validare URL ed estrarre owner e repo
+function validaEdEstrai(url) {
+    const githubRepoRegex = /^https?:\/\/github\.com\/([\w-]+)\/([\w-]+)(\/.*)?$/;
+    const match = url.match(githubRepoRegex);
 
-    fetch('http://127.0.0.1:8000/manda_url', {
+    if (match) {
+        return {
+            valido: true,
+            owner: match[1],
+            repo: match[2]
+        };
+    } else {
+        return { valido: false };
+    }
+}
+
+// Funzione per inviare l'URL del repository inserito nella textarea
+function inviaUrl() {
+    var url = document.getElementById('url').value.trim();
+
+    // Verifica validità dell'URL del repository ed estrazione di owner e repo
+    const risultato = validaEdEstrai(url);
+
+    if (!risultato.valido) {
+        alert("Inserisci un URL valido di un repository GitHub!");
+        return;
+    }
+
+    // Invio di owner e repo estratti dall'URL del repository
+    fetch('http://127.0.0.1:8000/invia_url', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "url": url })
+        body: JSON.stringify({ 
+            "owner": risultato.owner, 
+            "repo": risultato.repo 
+        })
     })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Risultato:', data);
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+    });
 }
 
-// Funzione per cancellare url repository inserito nella textarea
+// Funzione per cancellare l'URL del repository inserito nella textarea
 function cancellaUrl() {
     document.getElementById('url').value = '';
 }
