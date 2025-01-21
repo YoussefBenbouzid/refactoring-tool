@@ -2,27 +2,33 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import servizi.generazione_prompt as gnp
 import servizi.comunicazione_llm as cmn
+import servizi.interventi_repository as irp
 
-app = FastAPI() # Istanziazione applicazione FastAPI
+app = FastAPI()
 
-class CodiceRequest(BaseModel):
-    codice: str
+#class DatiRepository(BaseModel): # da ripristinare una volta sistemato front end
+    #owner: str # da ripristinare una volta sistemato front end
+    #repo: str # da ripristinare una volta sistemato front end
 
-class UrlRequest(BaseModel):
-    url: str
+#class CodiceRequest(BaseModel):
+    #codice: str
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+############ Da passare con front end ############
+owner = "YoussefBenbouzid"
+repo = "refactoring-tool"
+##################################################
 
-@app.post("/processo_snippet")
-async def processo_snippet(request: CodiceRequest):
-    codice = request.codice
-    prompt = gnp.generazione_prompt_snippet(codice)
-    risposta = cmn.comunicazione_gpt(prompt)
-    return {"risposta": risposta}
+@app.post("/repository")
+#async def analizza_repository(data: DatiRepository): # da ripristinare una volta sistemato front end
+    #url = f"https://api.github.com/repos/{data.owner}/{data.repo}/contents/" # da ripristinare una volta sistemato front end
+async def analizza_repository(): # da rimuovere una volta sistemato front end
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents/" # da rimuovere una volta sistemato front end
+    irp.estrai_file_da_repository(url)
 
-@app.post("/processo_repository")
-async def processo_repository(request: UrlRequest):
-    url = request.url
-    return {"risposta": risposta}
+
+#@app.post("/snippet")
+#async def analizza_snippet(request: CodiceRequest):
+    #codice = request.codice
+    #prompt = gnp.prompt_analisi(codice)
+    #risposta = cmn.comunicazione_gpt4(prompt)
+    #return {"risposta": risposta}

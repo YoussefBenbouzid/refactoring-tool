@@ -12,14 +12,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-10 mx-auto mt-3 mb-3 form-custom">
-                <!-- Per inserire uno o più file di codice -->
-                <div class="form-group drop-area" id="drop-area">
-                    <label for="file">Inserisci qui i tuoi file di codice:</label>
-                    <input type="file" class="form-control-file" id="files" name="files[]" multiple>
+                <!-- Per inserire url repository -->
+                <div class="form-group" style="text-align: center;">
+                    <label for="url">Inserisci qui l'URL del repository:</label>
+                    <textarea class="form-control screen" id="url" rows="5" placeholder=">_"></textarea>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary" onclick="inviaFile()">Invia</button>
-                    <button type="button" class="btn btn-danger" onclick="cancellaFile()">Cancella</button>
+                    <button type="button" class="btn btn-primary" onclick="inviaUrl()">Invia</button>
+                    <button type="button" class="btn btn-danger" onclick="cancellaUrl()">Cancella</button>
                 </div>
                 <!-- Per inserire uno o più snippet di codice -->
                 <div class="form-group" style="text-align: center;">
@@ -30,19 +30,19 @@
                     <button type="button" class="btn btn-primary" onclick="inviaSnippet()">Invia</button>
                     <button type="button" class="btn btn-danger" onclick="cancellaSnippet()">Cancella</button>
                 </div>
-                <!-- Per inserire url repository -->
-                <div class="form-group" style="text-align: center;">
-                    <label for="url">Inserisci qui l'URL del repository:</label>
-                    <textarea class="form-control screen" id="url" rows="5" placeholder=">_"></textarea>
+                <!-- Per inserire uno o più file di codice -->
+                <div class="form-group drop-area" id="drop-area">
+                    <label for="file">Inserisci qui i tuoi file di codice:</label>
+                    <input type="file" class="form-control-file" id="files" name="files[]" multiple>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary" onclick="inviaUrl()">Invia</button>
-                    <button type="button" class="btn btn-danger" onclick="cancellaUrl()">Cancella</button>
+                    <button type="button" class="btn btn-primary" onclick="inviaFile()">Invia</button>
+                    <button type="button" class="btn btn-danger" onclick="cancellaFile()">Cancella</button>
                 </div>
                 <!-- Area visualizzazione output -->
                 <div class="form-group" style="text-align: center;">
                     <label for="risposta">Suggerimenti:</label>
-                    <textarea class="form-control screen" id="risposta" rows="5" placeholder="> Refactoring suggeriti: " readonly></textarea>
+                    <textarea class="form-control screen" id="risposta" rows="5" placeholder="> Code smell rilevati e refactoring suggeriti: " readonly></textarea>
                 </div>
                 <!-- Pulsante per cancellare file, snippet e output -->
                 <div style="text-align: center;">

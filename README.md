@@ -7,3 +7,4 @@ Il sistema dispone di un'interfaccia nella quale l'utente può caricare gli snip
 
 ## Implementazione
 La generazione del prompt viene effettuata dinamicamente attraverso il caricamento dei dati relativi ai code smell e ai refactoring da file JSON. Questo approccio modulare permette di implementare una netta separazione tra la logica e i dati, garantendo una maggiore manutenibilità, scalabilità e flessibilità del sistema.
+
