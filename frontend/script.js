@@ -1,7 +1,7 @@
 // Funzione per validare URL ed estrarre owner e repo
-function validaEdEstrai(url) {
+function validaEdEstrai(url_repository) {
     const githubRepoRegex = /^https?:\/\/github\.com\/([\w-]+)\/([\w-]+)(\/.*)?$/;
-    const match = url.match(githubRepoRegex);
+    const match = url_repository.match(githubRepoRegex);
 
     if (match) {
         return {
@@ -16,10 +16,10 @@ function validaEdEstrai(url) {
 
 // Funzione per inviare l'URL del repository inserito nella textarea
 function inviaUrl() {
-    var url = document.getElementById('url').value.trim();
+    var url_repository = document.getElementById('url_repository').value.trim();
 
     // Verifica validità dell'URL del repository ed estrazione di owner e repo
-    const risultato = validaEdEstrai(url);
+    const risultato = validaEdEstrai(url_repository);
 
     if (!risultato.valido) {
         alert("Inserisci un URL valido di un repository GitHub!");
@@ -45,7 +45,7 @@ function inviaUrl() {
 
 // Funzione per cancellare l'URL del repository inserito nella textarea
 function cancellaUrl() {
-    document.getElementById('url').value = '';
+    document.getElementById('url_repository').value = '';
 }
 
 // Funzione per inviare snippet inseriti nella textarea
