@@ -48,4 +48,4 @@ def estrai_codici_da_repository(url_repository):
                         nome_file = os.path.basename(item['path'])
                         analizza_e_rifattorizza_codice(codice, nome_file)
             elif item['type'] == 'dir':
-                estrai_file_da_repository(item['url'])
+                estrai_codici_da_repository(item['url'])
