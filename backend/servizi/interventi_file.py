@@ -12,7 +12,7 @@ def crea_file_in_cartella(codice_rifattorizzato, nome_file, cartella):
         file.write(codice_rifattorizzato)
 
 # Funzione che analizza e rifattorizza codice con tre diversi LLM
-def analizza_e_rifattorizza_file(codice, nome_file):
+def analizza_e_rifattorizza_codice(codice, nome_file):
     prompt_per_analisi = gnp.prompt_per_analisi(codice, nome_file)
     #Analisi e rifattorizzazione del codice con Gemini 1.5
     suggerimenti = cmn.comunicazione_gemini1_5(prompt_per_analisi)
@@ -46,6 +46,6 @@ def estrai_codici_da_repository(url_repository):
                     if 'content' in file_content:
                         codice = base64.b64decode(file_content['content']).decode('utf-8')
                         nome_file = os.path.basename(item['path'])
-                        analizza_e_rifattorizza_file(codice, nome_file)
+                        analizza_e_rifattorizza_codice(codice, nome_file)
             elif item['type'] == 'dir':
                 estrai_file_da_repository(item['url'])
