@@ -5,7 +5,7 @@ import uvicorn
 from servizi import interventi_file as inf
 from servizi import generazione_prompt as gnp
 from servizi import comunicazione_llm as cmn
-from servizi import controllo_incrociato as ctr
+from servizi import valutazione as vlt
 
 app = FastAPI()
 
@@ -25,7 +25,7 @@ class DatiUrl(BaseModel):
 async def analizza_repository(dati: DatiUrl):
     url_repository = f"https://api.github.com/repos/{dati.owner}/{dati.repo}/contents/"
     #inf.estrai_codici_da_repository(url_repository)
-    #ctr.valuta()
+    #vlt.valuta()
     
 #@app.post("/snippet")
     # Implementare
