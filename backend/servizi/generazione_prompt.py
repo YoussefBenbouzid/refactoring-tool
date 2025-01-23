@@ -1,14 +1,14 @@
 import json
 
-# Lettura JSON e recupero definizioni
+# Lettura JSON e recupero definizioni code smell
 with open("definizioni/lista_code_smell.json", "r", encoding='utf-8') as file:
     lista_code_smell = json.load(file)
 
-# Lettura JSON e recupero definizioni
+# Lettura JSON e recupero definizioni refactoring
 with open("definizioni/definizioni_refactoring.json", "r", encoding='utf-8') as file:
     definizioni_refactoring = json.load(file)
 
-# Funzione che genera un prompt dinamicamente con i valori prelevati dai file JSON
+# Funzione che genera un prompt che definisce code smell e refactoring da individuare in un codice
 def prompt_per_analisi(codice, nome_file):
     prompt = f"Ciao, ho bisogno che tu analizzi il seguente codice:\n\n"
     prompt += f"{codice}\n\n"
@@ -25,20 +25,21 @@ def prompt_per_analisi(codice, nome_file):
         prompt += f"- {refactoring}: {definizione}\n"
     prompt += f"\nLimitati a indicarmi i punti del codice con evidenti code smell e per ognuno di questi indicami i refactoring secondo il seguente modello:\n\n"
     prompt += f"File: {nome_file}\n"
-    prompt += f"Code smell individuati: [code smell individuati separati da virgole con relative definizioni tra parentesi]\n"
+    prompt += f"Code smell da risolvere: [code smell individuati separati da virgole con relative definizioni tra parentesi]\n"
     prompt += f"Refactoring da applicare: [refactoring da suggerire separati da virgole con relative definizioni tra parentesi]\n\n"
     prompt += f"Nel caso non dovessero esserci code smell da sistemare o se il codice fosse insensato rispondi secondo il seguente modello:\n\n"
     prompt += f"File: {nome_file}\n"
-    prompt += f"Code smell individuati: nessun code smell individuato.\n"
+    prompt += f"Code smell da risolvere: nessun code smell individuato.\n"
     prompt += f"Refactoring da applicare: nessun refactoring da applicare.\n\n"
     prompt += f"Sii estremamente sintetico ed evita ulteriori spiegazioni."
     return prompt
 
+# Funzione che genera un prompt con indicati i refactoring da applicare a un codice
 def prompt_per_refactoring(codice, suggerimenti):
     prompt = f"Dato il seguente codice:\n\n"
     prompt += f"{codice}\n\n"
-    prompt += f"E dati i seguenti parametri:\n\n"
+    prompt += f"Riscrivilo facendo riferimento ai seguenti parametri:\n\n"
     prompt += f"{suggerimenti}\n\n"
-    prompt += f"Riscrivi il codice facendo riferimento ai parametri.\n"
-    prompt += f"Se non dovessero esserci code smell da sistemare o refactoring da applicare riscrivi il codice che ti ho passato evitando di modificarlo. Sii estremamente sintetico e limitati a scrivere solo il codice senza ulteriori spiegazioni."
+    prompt += f"Se non dovessero esserci code smell da sistemare o refactoring da applicare allora riscrivi il codice che ti ho passato evitando di modificarlo.\n"
+    prompt += f"Sii estremamente sintetico e limitati a scrivere solo il codice senza ulteriori spiegazioni."
     return prompt

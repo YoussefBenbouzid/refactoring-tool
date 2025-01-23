@@ -14,15 +14,15 @@ function validaEdEstrai(url_repository) {
     }
 }
 
-// Funzione per inviare l'URL del repository inserito nella textarea
-function inviaUrl() {
+// Funzione per inviare dati dell'URL del repository inserito nella textarea
+function inviaDatiUrl() {
     var url_repository = document.getElementById('url_repository').value.trim();
 
     // Verifica validità dell'URL del repository ed estrazione di owner e repo
     const risultato = validaEdEstrai(url_repository);
 
     if (!risultato.valido) {
-        alert("Inserisci un URL valido di un repository GitHub!");
+        alert("Inserisci un URL valido di un repository GitHub.");
         return;
     }
 
