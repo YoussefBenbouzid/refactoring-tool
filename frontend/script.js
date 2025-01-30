@@ -120,10 +120,13 @@ function cancellaFile() {
     fileInput.value = '';
 }
 
-// Funzione reset per cancellare file, snippet e output
+// Funzione reset per cancellare file, snippet e output e svuotare le cartelle
 function reset() {
     var domanda = confirm("Confermi di voler eliminare tutti i dati?");
         if (domanda === true) {
+            fetch('http://127.0.0.1:8000/reset', {
+                method: 'POST'
+            })
             cancellaFile();
             cancellaSnippet();
             cancellaUrl();

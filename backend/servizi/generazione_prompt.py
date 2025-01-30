@@ -52,7 +52,7 @@ def prompt_per_valutazione(codice, nome_file):
     for code_smell, data in lista_code_smell.items():
         definizione = data.get("definizione")
         prompt += f"- {code_smell}: {definizione}\n"
-    prompt += f"\nPer ogni code smell individuato restituiscimi una valutazione secondo il secondo modello:\n\n"
+    prompt += f"\nPer ogni code smell individuato restituiscimi una valutazione secondo il secondo modello (1 è il valore peggiore e 5 il migliore):\n\n"
     prompt += f"Code smell: [nome del code smell individuato]\n"
     prompt += f"Gravità funzionale: [valore numerico da 1 a 5]\n"
     prompt += f"Complessità sintattica: [valore numerico da 1 a 5]\n"

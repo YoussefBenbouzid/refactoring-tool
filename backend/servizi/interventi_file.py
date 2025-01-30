@@ -18,17 +18,17 @@ def analizza_e_rifattorizza_codice(codice, nome_file):
     suggerimenti = cmn.comunicazione_gemini1_5(prompt_per_analisi)
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
     codice_rifattorizzato = cmn.comunicazione_gemini1_5(prompt_per_refactoring)
-    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini1_5")
+    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini-1-5")
     #Analisi e rifattorizzazione del codice con Gemini 2.0
     suggerimenti = cmn.comunicazione_gemini2_0(prompt_per_analisi)
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
     codice_rifattorizzato = cmn.comunicazione_gemini2_0(prompt_per_refactoring)
-    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini2_0")
+    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini-2-0")
     #Analisi e rifattorizzazione del codice con GPT-4
     suggerimenti = cmn.comunicazione_gpt4(prompt_per_analisi)
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
     codice_rifattorizzato = cmn.comunicazione_gpt4(prompt_per_refactoring)
-    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gpt4")
+    crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gpt-4")
 
 # Funzione che estrae file di codice da un repository GitHub; la funzione manda i codici agli LLM per analisi e refactoring
 def estrai_codici_da_repository(url_repository):
@@ -46,6 +46,28 @@ def estrai_codici_da_repository(url_repository):
                     if 'content' in file_content:
                         codice = base64.b64decode(file_content['content']).decode('utf-8')
                         nome_file = os.path.basename(item['path'])
-                        analizza_e_rifattorizza_codice(codice, nome_file)
+                        analizza_e_rifattorizza_codice(codice, nome_file) # Chiamo funzione per analizzare e rifattorizzare codice
             elif item['type'] == 'dir':
                 estrai_codici_da_repository(item['url'])
+
+# Da sistemare
+def estrai_codice_da_cartella(cartella):
+    codice_rifattorizzato = {}
+    for file in os.listdir(cartella):
+        file_path = os.path.join(cartella, file)
+        with open(file_path, 'r', encoding='utf-8') as file:
+                codice_file[file_path] = file.read()
+    return codice_rifattorizzato
+
+# Funzione per svuotare le cartelle una volta selezionato Reset
+def svuota_cartelle():
+    percorso_servizi = os.path.dirname(os.path.abspath(__file__))
+    percorso_cartella_gemini_1_5 = os.path.join(percorso_servizi, "cartella-gemini-1-5")
+    percorso_cartella_gemini_2_0 = os.path.join(percorso_servizi, "cartella-gemini-2-0")
+    percorso_cartella_gpt_4 = os.path.join(percorso_servizi, "cartella-gpt-4")
+    cartelle = [percorso_cartella_gemini_1_5, percorso_cartella_gemini_2_0, percorso_cartella_gpt_4]
+    for cartella in cartelle:
+        for file in os.listdir(cartella):
+            file_path = os.path.join(cartella, file)
+            if os.path.isfile(file_path) and file != ".gitkeep":
+                os.remove(file_path)

@@ -24,8 +24,8 @@ class DatiUrl(BaseModel):
 @app.post("/repository")
 async def analizza_repository(dati: DatiUrl):
     url_repository = f"https://api.github.com/repos/{dati.owner}/{dati.repo}/contents/"
-    #inf.estrai_codici_da_repository(url_repository)
-    #vlt.valuta()
+    inf.estrai_codici_da_repository(url_repository)
+    vlt.valuta()
     
 #@app.post("/snippet")
     # Implementare
@@ -38,6 +38,10 @@ async def analizza_repository(dati: DatiUrl):
     # Implementare
     # Implementare
     # Implementare
+
+@app.post("/reset")
+async def reset():
+    inf.svuota_cartelle()
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
