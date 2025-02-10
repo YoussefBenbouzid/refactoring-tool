@@ -11,7 +11,7 @@ def crea_file_in_cartella(codice_rifattorizzato, nome_file, cartella):
     with open(percorso_file, 'w', encoding='utf-8') as file:
         file.write(codice_rifattorizzato)
 
-# Funzione che analizza e rifattorizza codice con tre diversi LLM
+# Funzione che analizza e rifattorizza codice con i tre LLM
 def analizza_e_rifattorizza_codice(codice, nome_file):
     prompt_per_analisi = gnp.prompt_per_analisi(codice, nome_file)
     #Analisi e rifattorizzazione del codice con Gemini 1.5
@@ -48,12 +48,12 @@ def estrai_codici_da_repository(url_repository):
                     file_content = file_response.json()
                     if 'content' in file_content:
                         codice = base64.b64decode(file_content['content']).decode('utf-8')
-                        nome_file = os.path.basename(item['path'])  
+                        nome_file = os.path.basename(item['path'])
                         analizza_e_rifattorizza_codice(codice, nome_file) # Chiamo funzione per analizzare e rifattorizzare codice
             elif item['type'] == 'dir':
                 estrai_codici_da_repository(item['url'])
 
-# Funzione per svuotare le cartelle una volta selezionato Reset
+# Funzione per svuotare le cartelle una volta selezionato "Reset"
 def svuota_cartelle():
     percorso_servizi = os.path.dirname(os.path.abspath(__file__))
     percorso_cartella_gemini_1_5 = os.path.join(percorso_servizi, "cartella-gemini-1-5")

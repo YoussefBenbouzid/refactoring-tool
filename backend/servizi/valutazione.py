@@ -23,6 +23,7 @@ def valuta_codici(modello, cartella):
                 risposta = cmn.comunicazione_gpt_4(prompt_per_valutazione)
                 print(risposta)
 
+# Funzione per effettuare la valutazione incrociata una volta selezionato "Valuta"
 def valutazione():
     modelli = ["Gemini 1.5", "Gemini 2.0", "GPT-4"]
     cartelle = ["cartella-gemini-1-5", "cartella-gemini-2-0", "cartella-gpt-4"]
