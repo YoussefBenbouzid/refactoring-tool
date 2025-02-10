@@ -15,19 +15,22 @@ def crea_file_in_cartella(codice_rifattorizzato, nome_file, cartella):
 def analizza_e_rifattorizza_codice(codice, nome_file):
     prompt_per_analisi = gnp.prompt_per_analisi(codice, nome_file)
     #Analisi e rifattorizzazione del codice con Gemini 1.5
-    suggerimenti = cmn.comunicazione_gemini1_5(prompt_per_analisi)
+    suggerimenti = cmn.comunicazione_gemini_1_5(prompt_per_analisi)
+    print(suggerimenti) # Poi da aggiungere a una stringa da passare al frontend
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
-    codice_rifattorizzato = cmn.comunicazione_gemini1_5(prompt_per_refactoring)
+    codice_rifattorizzato = cmn.comunicazione_gemini_1_5(prompt_per_refactoring)
     crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini-1-5")
     #Analisi e rifattorizzazione del codice con Gemini 2.0
-    suggerimenti = cmn.comunicazione_gemini2_0(prompt_per_analisi)
+    suggerimenti = cmn.comunicazione_gemini_2_0(prompt_per_analisi)
+    print(suggerimenti) # Poi da aggiungere a una stringa da passare al frontend
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
-    codice_rifattorizzato = cmn.comunicazione_gemini2_0(prompt_per_refactoring)
+    codice_rifattorizzato = cmn.comunicazione_gemini_2_0(prompt_per_refactoring)
     crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gemini-2-0")
     #Analisi e rifattorizzazione del codice con GPT-4
-    suggerimenti = cmn.comunicazione_gpt4(prompt_per_analisi)
+    suggerimenti = cmn.comunicazione_gpt_4(prompt_per_analisi)
+    print(suggerimenti) # Poi da aggiungere a una stringa da passare al frontend
     prompt_per_refactoring = gnp.prompt_per_refactoring(codice, suggerimenti)
-    codice_rifattorizzato = cmn.comunicazione_gpt4(prompt_per_refactoring)
+    codice_rifattorizzato = cmn.comunicazione_gpt_4(prompt_per_refactoring)
     crea_file_in_cartella(codice_rifattorizzato, nome_file, "cartella-gpt-4")
 
 # Funzione che estrae file di codice da un repository GitHub; la funzione manda i codici agli LLM per analisi e refactoring
@@ -45,19 +48,10 @@ def estrai_codici_da_repository(url_repository):
                     file_content = file_response.json()
                     if 'content' in file_content:
                         codice = base64.b64decode(file_content['content']).decode('utf-8')
-                        nome_file = os.path.basename(item['path'])
+                        nome_file = os.path.basename(item['path'])  
                         analizza_e_rifattorizza_codice(codice, nome_file) # Chiamo funzione per analizzare e rifattorizzare codice
             elif item['type'] == 'dir':
                 estrai_codici_da_repository(item['url'])
-
-# Da sistemare
-def estrai_codice_da_cartella(cartella):
-    codice_rifattorizzato = {}
-    for file in os.listdir(cartella):
-        file_path = os.path.join(cartella, file)
-        with open(file_path, 'r', encoding='utf-8') as file:
-                codice_file[file_path] = file.read()
-    return codice_rifattorizzato
 
 # Funzione per svuotare le cartelle una volta selezionato Reset
 def svuota_cartelle():

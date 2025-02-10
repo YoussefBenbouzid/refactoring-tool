@@ -120,6 +120,13 @@ function cancellaFile() {
     fileInput.value = '';
 }
 
+// Funzione per avviare la valutazione
+function valuta() {
+    fetch('http://127.0.0.1:8000/valuta', {
+        method: 'POST'
+    })
+}
+
 // Funzione reset per cancellare file, snippet e output e svuotare le cartelle
 function reset() {
     var domanda = confirm("Confermi di voler eliminare tutti i dati?");

@@ -24,11 +24,11 @@ def prompt_per_analisi(codice, nome_file):
     for refactoring, definizione in definizioni_refactoring.items():
         prompt += f"- {refactoring}: {definizione}\n"
     prompt += f"\nLimitati a indicarmi i code smell e per ognuno di questi indicami i rispettivi refactoring secondo il seguente modello:\n\n"
-    prompt += f"File: {nome_file}\n"
+    prompt += f"File: {nome_file} controllato da [nome del tuo modello (Gemini 1.5, Gemini 2.0 o GPT-4)]\n"
     prompt += f"Code smell da risolvere: [code smell individuati separati da virgole con relative definizioni tra parentesi]\n"
     prompt += f"Refactoring da applicare: [refactoring da suggerire separati da virgole con relative definizioni tra parentesi]\n\n"
     prompt += f"Nel caso non dovessero esserci code smell da sistemare o se il codice fosse insensato rispondi secondo il seguente modello:\n\n"
-    prompt += f"File: {nome_file}\n"
+    prompt += f"File: {nome_file} controllato da [nome del tuo modello (Gemini 1.5, Gemini 2.0 o GPT-4)]\n"
     prompt += f"Code smell da risolvere: nessun code smell individuato.\n"
     prompt += f"Refactoring da applicare: nessun refactoring da applicare.\n\n"
     prompt += f"Sii estremamente sintetico ed evita ulteriori spiegazioni."
@@ -45,14 +45,15 @@ def prompt_per_refactoring(codice, suggerimenti):
     return prompt
 
 # Funzione che genera un prompt per effettuare la valutazione di un codice rifattorizzato
-def prompt_per_valutazione(codice, nome_file):
+def prompt_per_valutazione(codice_rifattorizzato, nome_file):
     prompt = f"Ciao, ho bisogno che tu analizzi il seguente codice:\n\n"
     prompt += f"{codice_rifattorizzato}\n\n"
     prompt += f"Fai riferimento alla seguente lista di code smell e alle relative definizioni:\n"
     for code_smell, data in lista_code_smell.items():
         definizione = data.get("definizione")
         prompt += f"- {code_smell}: {definizione}\n"
-    prompt += f"\nPer ogni code smell individuato restituiscimi una valutazione secondo il secondo modello (1 è il valore peggiore e 5 il migliore):\n\n"
+    prompt += f"\nNella risposta scrivi: File: {nome_file} controllato da [nome del tuo modello (Gemini 1.5, Gemini 2.0 o GPT-4)]\n"
+    prompt += f"\nPoi, per ogni code smell individuato restituiscimi una valutazione secondo il secondo modello (1 è il valore peggiore e 5 il migliore):\n\n"
     prompt += f"Code smell: [nome del code smell individuato]\n"
     prompt += f"Gravità funzionale: [valore numerico da 1 a 5]\n"
     prompt += f"Complessità sintattica: [valore numerico da 1 a 5]\n"

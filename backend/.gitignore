@@ -6,3 +6,4 @@ venv/
 .vscode/
 .idea/
 .env
+service_account.json
