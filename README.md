@@ -7,8 +7,12 @@ Il sistema dispone di un'interfaccia nella quale l'utente può digitare l'url de
 
 Il sistema consente di analizzare anche snippet di codice o file di codice, i quali possono essere rispettivamente digitati o allegati dall'utente nell'interfaccia. Il sistema genera un feedback per l'utente nell'interfaccia.
 
+![Pipeline del Refactoring tool](immagini/pipeline-refactoring-tool.png)
+
 ## Implementazione
 L'interfaccia è stata realizzata attraverso il framework Bootstrap, combinato insieme ad HTML e CSS, mentre le funzionalità del frontend sono state sviluppate con JavaScript.
+
+![Interfaccia del Refactoring tool](immagini/interfaccia-refactoring-tool.png)
 
 Il backend è stato sviluppato in Python, utilizzando in particolare il framework FastAPI, il server Uvicorn e la libreria Pydantic. L'estrazione del codice dal repository GitHub avviene tramite la GitHub REST API, mentre i modelli linguistici sono stati integrati tramite le API e le credenziali rispettive, che sono definite nei file `service_account.json` e `.env`, non mostrati per motivi di sicurezza.
 
